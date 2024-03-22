@@ -17,6 +17,11 @@ namespace WF.Sample.MsSql.Implementation
         {
             _sampleContext = sampleContext;
         }
+        public List<string> GetAllSchemes()
+        {
+            var query = _sampleContext.WorkflowSchemes;
+            return query.Select(x => x.Code).ToList();
+        }
 
         public void ChangeState(Guid id, string nextState,  string nextStateName)
         {

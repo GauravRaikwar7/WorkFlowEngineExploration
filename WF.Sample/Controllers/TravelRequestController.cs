@@ -14,6 +14,7 @@ using WF.Sample.Business.DataAccess;
 using OptimaJet.Workflow.Core.Persistence;
 using OptimaJet.Workflow.Core.Runtime;
 using WF.Sample.Extensions;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WF.Sample.Controllers
 {
@@ -181,7 +182,13 @@ namespace WF.Sample.Controllers
          
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(new TravelRequestIndexModel<TravelRequestModel>
+                {
+                    TravelRequestListModel = new TravelRequestListModel<TravelRequestModel>()
+                    {
+                        Docs = new List<TravelRequestModel>() { model},
+                    }
+                });
             }
 
             TravelRequest doc = _mapper.Map<TravelRequest>(model);
@@ -193,7 +200,13 @@ namespace WF.Sample.Controllers
                 if (doc == null)
                 {
                     ModelState.AddModelError("", "Row not found!");
-                    return View(model);
+                    return View(new TravelRequestIndexModel<TravelRequestModel>
+                    {
+                        TravelRequestListModel = new TravelRequestListModel<TravelRequestModel>()
+                        {
+                            Docs = new List<TravelRequestModel>() { model },
+                        }
+                    });
                 }
             }
             catch (Exception ex)

@@ -8,6 +8,7 @@ namespace WF.Sample.Business.DataAccess
 {
     public interface IDocumentRepository
     {
+        List<string> GetAllSchemes();
         Model.Document InsertOrUpdate(Model.Document doc);
         List<Model.Document> Get(out int count, int page = 1, int pageSize = 128);
         Model.Document Get(Guid id, bool loadChildEntities = true);
