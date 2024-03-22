@@ -1,0 +1,30 @@
+﻿@using WF.Sample.Business.DataAccess
+@using WF.Sample.Helpers
+@inject IEmployeeRepository EmployeeRepository;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor ContextAccessor
+
+<div class="wfe-application-mainmenu" style="height:50px">
+    <div style="float:left">
+        <div class="logotitle">
+            <a href="https://localhost:44338/"><img height="32" src="@Url.Content("~/images/logo.png")" /></a>
+        </div>
+    </div>
+    <div style="float:right">
+       @*  <a href="@Url.Action("Edit","Document")" class="ui primary button">Create a Travel Request request</a> *@
+       
+        <a href="@Url.Action("Edit","TravelRequest")" class="ui primary button">Create a Travel request</a>
+       
+        <a href="/" class="ui secondary button">Travel Requests</a>
+        @{
+            Guid currentEmployeeId = CurrentUserSettings.GetCurrentUser(ContextAccessor.HttpContext);
+            var currentUser = EmployeeRepository.GetById(currentEmployeeId);
+            var roles =  currentUser.GetListRoles();
+
+            if (roles != null && roles.Contains("Boss"))
+            {
+                <a href="@Url.Action("Index","Designer")" class="ui secondary button">Designer</a>
+                <a href="@Url.Action("Edit", "Settings")" class="ui secondary button">Settings</a>
+            }
+        }
+    </div>
+</div>
