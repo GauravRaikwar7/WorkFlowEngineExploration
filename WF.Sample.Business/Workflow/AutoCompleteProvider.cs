@@ -30,19 +30,18 @@ namespace WF.Sample.Business.Workflow
                 return new List<string>();
             }
 
-            if (category == SuggestionCategory.ConditionParameter && value == "IsNotifyToManager")
+            if (category == SuggestionCategory.ConditionParameter && value == "CheckParameterValue")
             {
                 PropertyInfo[] properties = typeof(TravelRequest).GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 List<string> publicProperties = new List<string>();
                 foreach (PropertyInfo property in properties)
                 {
-                    publicProperties.Add("@"+property.Name);
+                    publicProperties.Add($"{nameof(TravelRequest)}.{property.Name}");
                 }
-
+                publicProperties.AddRange(new List<string> { "==", "!=", "> ", "< ", ">=", "<=" });
                 return publicProperties;
             }
-
-            return null;
+            return null;                                     
         }
     }
 }

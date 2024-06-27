@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OptimaJet.Workflow.Core.Runtime;
 using WF.Sample.Business.Workflow;
+using WF.Sample.MsSql;
 using WF.Sample.ServiceLocation;
 
 namespace WF.Sample
@@ -34,6 +35,7 @@ namespace WF.Sample
             services.AddAutoMapper();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddDbContext<SampleContext>();
 
             // Create the container builder.
             var builder = new ContainerBuilder();

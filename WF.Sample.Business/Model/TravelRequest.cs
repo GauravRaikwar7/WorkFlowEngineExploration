@@ -10,6 +10,7 @@ namespace WF.Sample.Business.Model
     {
         public Guid Id { get; set; }
         public string TravelRequestNumber { get; set; }
+        public string WorkflowSchemeCode { get; set; }
         public int? Number { get; set; }
         public string Comment { get; set; }
         public Guid AuthorId { get; set; }

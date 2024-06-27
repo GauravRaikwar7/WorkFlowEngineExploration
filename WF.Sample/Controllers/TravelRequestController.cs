@@ -14,7 +14,6 @@ using WF.Sample.Business.DataAccess;
 using OptimaJet.Workflow.Core.Persistence;
 using OptimaJet.Workflow.Core.Runtime;
 using WF.Sample.Extensions;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WF.Sample.Controllers
 {
@@ -22,12 +21,14 @@ namespace WF.Sample.Controllers
     {
         private readonly ITravelRequestRepository _TravelRequestRepository;
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IWorkflowRepository _workFlowRepository;
         private readonly IMapper _mapper;
         private int pageSize = 15;
-        public TravelRequestController(ITravelRequestRepository TravelRequestRepository, IEmployeeRepository employeeRepository, IMapper mapper)
+        public TravelRequestController(ITravelRequestRepository TravelRequestRepository, IEmployeeRepository employeeRepository, IMapper mapper, IWorkflowRepository workFlowRepository)
         {
             _TravelRequestRepository = TravelRequestRepository;
             _employeeRepository = employeeRepository;
+            _workFlowRepository = workFlowRepository;
             _mapper = mapper;
         }
 
@@ -99,7 +100,7 @@ namespace WF.Sample.Controllers
                 var d = _TravelRequestRepository.Get(Id.Value);
                 if(d != null)
                 {
-                    await CreateWorkflowIfNotExists(Id.Value);
+                    await CreateWorkflowIfNotExists(Id.Value, d.WorkflowSchemeCode);
                     var history = await GetApprovalHistory(Id.Value);
                     
                     model = new TravelRequestIndexModel<TravelRequestModel>()
@@ -107,7 +108,7 @@ namespace WF.Sample.Controllers
                         TravelRequestListModel = new TravelRequestListModel<TravelRequestModel>
                         {
                             Docs = new List<TravelRequestModel> {
-                        new TravelRequestModel()
+                                 new TravelRequestModel()
                                 {
                                     Id = d.Id,
                                     AuthorId = d.AuthorId,
@@ -122,7 +123,8 @@ namespace WF.Sample.Controllers
                                     TotalCost = d.TotalCost,
                                     Commands = await GetCommands(Id.Value),
                                     AvailiableStates = await GetStates(Id.Value),
-                                    HistoryModel = new TravelRequestHistoryModel{Items = history}
+                                    HistoryModel = new TravelRequestHistoryModel{Items = history},
+                                    WorkflowSchemeCode = d.WorkflowSchemeCode,
                                 } }
                         }
                     };
@@ -134,14 +136,14 @@ namespace WF.Sample.Controllers
                 Guid userId = CurrentUserSettings.GetCurrentUser(HttpContext);
                 var trnumber = GenerateTRNumber("TS");
 
+                ProcessActivity initialActivity = _workFlowRepository.GetInitialActivityBySchemaCode("TravelRequestScheme");
                 model = new TravelRequestIndexModel<TravelRequestModel>() { TravelRequestListModel = new TravelRequestListModel<TravelRequestModel>
                 {
                     Docs = new List<TravelRequestModel> {
-                    new TravelRequestModel()
+                    new TravelRequestModel(initialActivity?.Name)
                         {
                             AuthorId = userId,
                             AuthorName = _employeeRepository.GetNameById(userId),
-                            StateName = "Travel Request Created",
                             TravelRequestNumber = trnumber
                         }}
                 }
@@ -260,12 +262,13 @@ namespace WF.Sample.Controllers
         private async Task<TravelRequestCommandModel[]> GetCommands(Guid id)
         {
             var result = new List<TravelRequestCommandModel>();
-            
-            var commands = WorkflowInit.Runtime.GetAvailableCommands(id, CurrentUserSettings.GetCurrentUser(HttpContext).ToString());
+            var tr = _TravelRequestRepository.Get(id);
+            ProcessCommand[] commands = _workFlowRepository.GetAvailableCommands(tr.WorkflowSchemeCode, id, CurrentUserSettings.GetCurrentUser(HttpContext).ToString());
+            //var commands = WorkflowInit.Runtime.GetAvailableCommands(id, CurrentUserSettings.GetCurrentUser(HttpContext).ToString());
             foreach (var workflowCommand in commands)
             {
-                if (result.Count(c => c.key == workflowCommand.CommandName) == 0)
-                    result.Add(new TravelRequestCommandModel() { key = workflowCommand.CommandName, value = workflowCommand.LocalizedName, Classifier = workflowCommand.Classifier });
+                if (result.Count(c => c.key == workflowCommand.Name) == 0)
+                    result.Add(new TravelRequestCommandModel() { key = workflowCommand.Name, value = workflowCommand.Name });
             }
             return result.ToArray();
         }
@@ -274,11 +277,13 @@ namespace WF.Sample.Controllers
         {
 
             var result = new Dictionary<string, string>();
-            var states = await WorkflowInit.Runtime.GetAvailableStateToSetAsync(id);
-            foreach (var state in states)
+            var tr = _TravelRequestRepository.Get(id);
+            ProcessActivity[] activities = _workFlowRepository.GetAvailableActivities(tr.WorkflowSchemeCode, id, CurrentUserSettings.GetCurrentUser(HttpContext).ToString());
+            //var states = await WorkflowInit.Runtime.GetAvailableStateToSetAsync(id);
+            foreach (var state in activities)
             {
                 if (!result.ContainsKey(state.Name))
-                    result.Add(state.Name, state.VisibleName);
+                    result.Add(state.State, state.Name);
             }
             return result;
 
@@ -303,14 +308,19 @@ namespace WF.Sample.Controllers
               
                 return;
             }
-
+            var tr = _TravelRequestRepository.Get(id);
             if (commandName.Equals("Resume", StringComparison.InvariantCultureIgnoreCase))
             {
                 if (string.IsNullOrEmpty(TravelRequest.StateNameToSet))
                     return;
-                var pi = await WorkflowInit.Runtime.GetProcessInstanceAndFillProcessParametersAsync(id);
+                //var pi = await WorkflowInit.Runtime.GetProcessInstanceAndFillProcessParametersAsync(id);
+                //var activity = pi.ProcessScheme.Activities.FirstOrDefault(a => a.IsForSetState && a.State.Equals(TravelRequest.StateNameToSet, StringComparison.OrdinalIgnoreCase));
 
-                var activity = pi.ProcessScheme.Activities.FirstOrDefault(a => a.IsForSetState && a.State.Equals(TravelRequest.StateNameToSet, StringComparison.OrdinalIgnoreCase));
+
+                
+                var scheme = _workFlowRepository.GetProcessBySchemeCode(tr.WorkflowSchemeCode);
+                //var pi = await WorkflowInit.Runtime.GetProcessInstanceAndFillProcessParametersAsync(id);
+                var activity = scheme.Activities.FirstOrDefault(a => a.IsForSetState && a.State.Equals(TravelRequest.StateNameToSet, StringComparison.OrdinalIgnoreCase));
 
                 if (activity == null)
                 {
@@ -327,7 +337,7 @@ namespace WF.Sample.Controllers
             }
 
             var commands = await WorkflowInit.Runtime.GetAvailableCommandsAsync(id, currentUser);
-
+            //var commands = _workFlowRepository.GetAvailableCommands(TravelRequest.WorkflowSchemeCode, id, currentUser);
             var command =
                 commands.FirstOrDefault(
                     c => c.CommandName.Equals(commandName, StringComparison.CurrentCultureIgnoreCase));
@@ -335,18 +345,21 @@ namespace WF.Sample.Controllers
             if (command == null)
                 return;
 
-            if (command.Parameters.Count(p => p.ParameterName == "Comment") == 1)
-                command.Parameters.Single(p => p.ParameterName == "Comment").Value = TravelRequest.Comment ?? string.Empty;
+            //if (command.Parameters.Count(p => p.ParameterName == "Comment") == 1)
+            //    command.Parameters.Single(p => p.ParameterName == "Comment").Value = TravelRequest.Comment ?? string.Empty;
 
-            await WorkflowInit.Runtime.ExecuteCommandAsync(command,currentUser,currentUser);
+            //await WorkflowInit.Runtime.ExecuteCommandAsync(command,currentUser,currentUser);
+            //var tr = _TravelRequestRepository.Get(id);
+
+            await _workFlowRepository.ExecuteCommandAsync<MsSql.TravelRequest>(command.CommandName, tr.Id, currentUser, tr.WorkflowSchemeCode);
         }
 
-        private async Task CreateWorkflowIfNotExists(Guid id)
+        private async Task CreateWorkflowIfNotExists(Guid id, string workflowSchemeCode = "TravelRequestScheme")
         {
             if (await WorkflowInit.Runtime.IsProcessExistsAsync(id))
                 return;
 
-            await WorkflowInit.Runtime.CreateInstanceAsync("SimpleWF", id);
+            await WorkflowInit.Runtime.CreateInstanceAsync(workflowSchemeCode, id);
         }
 
         #endregion

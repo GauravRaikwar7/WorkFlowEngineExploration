@@ -9,6 +9,12 @@ namespace WF.Sample.Models
         public static string NotFoundError = "TravelRequest is not found";
         public Guid Id { get; set; }
         public int? Number { get; set; }
+
+        [Required]
+        [StringLength(256)]
+        [DataType(DataType.Text)]
+        [Display(Name = "WorkFlowSchemeCode")]
+        public string WorkflowSchemeCode { get; set; }
         
         [Required]
         [StringLength(256)]
@@ -54,6 +60,14 @@ namespace WF.Sample.Models
         {
             Commands = new TravelRequestCommandModel[0];
             AvailiableStates = new Dictionary<string, string>{};
+            HistoryModel = new TravelRequestHistoryModel();
+        }
+
+        public TravelRequestModel(string stateName)
+        {
+            StateName = stateName ?? string.Empty;
+            Commands = new TravelRequestCommandModel[0];
+            AvailiableStates = new Dictionary<string, string> { };
             HistoryModel = new TravelRequestHistoryModel();
         }
 
