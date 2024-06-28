@@ -7,7 +7,10 @@ namespace WF.Sample.Extensions
     {
         public static string GetListRoles(this Employee item)
         {
-            return string.Join(",", item.EmployeeRoles.Select(c => c.Role.Name).ToArray());
+            if (item != null)
+                return string.Join(",", item.EmployeeRoles.Select(c => c.Role.Name).ToArray());
+            else
+                return string.Empty;
         }
     }
 }
