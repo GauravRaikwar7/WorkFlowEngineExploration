@@ -1,17 +1,32 @@
 namespace WF.Sample.MsSql
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
  
 
-    [Table("WorkflowScheme")]
-    public partial class WorkflowScheme
+    [Table("WorkflowProcessScheme")]
+    public partial class WorkflowProcessScheme
     {
-        [Key]
-        [StringLength(256)]
-        public string Code { get; set; }
+        public Guid Id { get; set; }
 
-        [Required]
         public string Scheme { get; set; }
+
+        public string DefiningParameters { get; set; }
+
+        public string DefiningParametersHash { get; set; }
+
+        public string SchemeCode { get; set; }
+
+        public bool IsObsolete { get; set; }
+
+        public string RootSchemeCode { get; set; }
+
+        public Guid? RootSchemeId { get; set; }
+
+        public string AllowedActivities { get; set; }
+
+        public string StartingTransition { get; set; }
+
     }
 }

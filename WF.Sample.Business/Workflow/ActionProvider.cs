@@ -34,6 +34,7 @@ namespace WF.Sample.Business.Workflow
 
             //Register your conditions in _conditions and _asyncConditions dictionaries
             _conditions.Add("IsNotifyToManager", IsNotifyToManager); //sync
+            _conditions.Add("CheckParameterValue", CheckParameterValue); //sync
             _asyncConditions.Add("MyAsyncCondition", MyAsyncCondition); //async
         }
 
@@ -49,6 +50,11 @@ namespace WF.Sample.Business.Workflow
         }
 
         private bool IsNotifyToManager(ProcessInstance processInstance, WorkflowRuntime runtime, string actionParameter)
+        {
+            //Execute your code here
+            return false;
+        }
+        private bool CheckParameterValue(ProcessInstance processInstance, WorkflowRuntime runtime, string actionParameter)
         {
             //Execute your code here
             return false;

@@ -43,6 +43,14 @@
           "type": "WF.Sample.Business.DataAccess.IPersistenceProviderContainer, WF.Sample.Business"
         }
       ]
+    },
+    {
+      "type": "WF.Sample.MsSql.Implementation.WorkflowRepository",
+      "services": [
+        {
+          "type": "WF.Sample.Business.DataAccess.IWorkflowRepository, WF.Sample.Business"
+        }
+      ]
     }
   ]
 }

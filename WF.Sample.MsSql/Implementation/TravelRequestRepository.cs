@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WF.Sample.Business.DataAccess;
+using WF.Sample.Business.Model;
 using WF.Sample.Business.Workflow;
 
 
@@ -94,11 +95,15 @@ namespace WF.Sample.MsSql.Implementation
             }
             else
             {
-                target = new TravelRequest
+                var scheme = _sampleContext.WorkflowSchemes.First(x => x.Code == doc.WorkflowSchemeCode);
+                var process = XmlDeserializer.Deserialize<Process>(scheme.Scheme);
+                var initialActivity = process.Activities.FirstOrDefault(x=> x.IsInitial = true);
+                target = new TravelRequest (initialActivity.State, initialActivity.Name)
                 {
                     Id = Guid.NewGuid(),
                     AuthorId = doc.AuthorId,
-                    StateName = doc.StateName
+                    StateName = doc.StateName,
+                    WorkflowSchemeCode = doc.WorkflowSchemeCode,
                 };
                 _sampleContext.TravelRequests.Add(target);
             }
@@ -107,7 +112,12 @@ namespace WF.Sample.MsSql.Implementation
             target.ManagerId = doc.ManagerId;
             target.Comment = doc.Comment;
             target.TotalCost = doc.TotalCost;
-
+            if(target.WorkflowSchemeCode != doc.WorkflowSchemeCode)
+            {
+                var wfpi = _sampleContext.WorkflowProcessInstance.Where(x => x.Id == target.Id).FirstOrDefault();
+                wfpi.SchemeId = _sampleContext.WorkflowProcessSchemes.FirstOrDefault(x => x.SchemeCode == doc.WorkflowSchemeCode)?.Id;
+                target.WorkflowSchemeCode = doc.WorkflowSchemeCode;
+            }
             _sampleContext.SaveChanges();
 
             doc.Id = target.Id;

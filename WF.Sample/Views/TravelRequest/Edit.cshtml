@@ -5,6 +5,7 @@
 }
 
 @inject IEmployeeRepository EmployeeRepository
+@inject IWorkflowRepository WorkflowRepository
 
 @* @model WF.Sample.Models.TravelRequestModel  *@
 @model WF.Sample.Models.TravelRequestIndexModel<TravelRequestModel>
@@ -136,6 +137,24 @@
     <div class="field">
         @Html.LabelFor(model => Model.TravelRequestListModel.Docs.First().Comment)
         @Html.TextAreaFor(model => Model.TravelRequestListModel.Docs.First().Comment, 6, 100, new { style = "width:98%" })
+    </div>
+    @* <div class="field">
+        @Html.LabelFor(model => Model.TravelRequestListModel.Docs.First().WorkflowSchemeCode)
+        @Html.TextAreaFor(model => Model.TravelRequestListModel.Docs.First().WorkflowSchemeCode, 6, 100, new { style = "width:98%" })
+    </div> *@
+    <div class="field @employeeControllerError">
+        @Html.LabelFor(model => Model.TravelRequestListModel.Docs.First().WorkflowSchemeCode)
+        @{
+            List<SelectListItem> workflowList = new List<SelectListItem>();
+            workflowList.Add(new SelectListItem());
+            workflowList.AddRange(WorkflowRepository.GetAllWorkFlows().Select(item => new SelectListItem()
+            {
+                Text = item,
+                Value = item
+            }).ToList());
+        }
+
+        @Html.DropDownListFor(model => Model.TravelRequestListModel.Docs.First().WorkflowSchemeCode, workflowList, new { @class = "ui selection dropdown" })
     </div>
 
     @{

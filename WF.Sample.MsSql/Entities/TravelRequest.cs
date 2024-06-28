@@ -9,8 +9,17 @@ namespace WF.Sample.MsSql
     public partial class TravelRequest
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TravelRequest(string initialState, string initialStateName)
+        {
+
+            State = initialState;
+            StateName = initialStateName;
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TravelRequest()
         {
+
             State = "Travel Request Created";
             StateName = "Travel Request Created";
         }
@@ -23,6 +32,9 @@ namespace WF.Sample.MsSql
         [Required]
         [StringLength(256)]
         public string TravelRequestNumber { get; set; }
+
+        [StringLength(256)]
+        public string WorkflowSchemeCode { get; set; }
 
         public string Comment { get; set; }
 
