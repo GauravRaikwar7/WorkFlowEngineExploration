@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WF.Sample.MsSql.Entities
+namespace VLWorkflowRuntime.WorkflowEntities.SQL
 {
     [Table("WorkflowProcessTransitionHistory")]
     public class WorkflowProcessTransitionHistory

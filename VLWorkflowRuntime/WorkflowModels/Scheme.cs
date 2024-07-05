@@ -1,12 +1,11 @@
-﻿
-namespace WF.Sample.Business.Model
-{ 
+﻿namespace VLWorkflowRuntime.WorkflowModels
+{
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
-/// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    /// <remarks/>
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRoot(Namespace = "", IsNullable = false)]
     public partial class Process
     {
 
@@ -41,25 +40,25 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.designerField;
+                return designerField;
             }
             set
             {
-                this.designerField = value;
+                designerField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Actor", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Actor", IsNullable = false)]
         public ProcessActor[] Actors
         {
             get
             {
-                return this.actorsField;
+                return actorsField;
             }
             set
             {
-                this.actorsField = value;
+                actorsField = value;
             }
         }
 
@@ -68,25 +67,25 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.parametersField;
+                return parametersField;
             }
             set
             {
-                this.parametersField = value;
+                parametersField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Command", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Command", IsNullable = false)]
         public ProcessCommand[] Commands
         {
             get
             {
-                return this.commandsField;
+                return commandsField;
             }
             set
             {
-                this.commandsField = value;
+                commandsField = value;
             }
         }
 
@@ -95,131 +94,131 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.timersField;
+                return timersField;
             }
             set
             {
-                this.timersField = value;
+                timersField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Comment", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Comment", IsNullable = false)]
         public ProcessComment[] Comments
         {
             get
             {
-                return this.commentsField;
+                return commentsField;
             }
             set
             {
-                this.commentsField = value;
+                commentsField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Activity", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Activity", IsNullable = false)]
         public ProcessActivity[] Activities
         {
             get
             {
-                return this.activitiesField;
+                return activitiesField;
             }
             set
             {
-                this.activitiesField = value;
+                activitiesField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Transition", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Transition", IsNullable = false)]
         public ProcessTransition[] Transitions
         {
             get
             {
-                return this.transitionsField;
+                return transitionsField;
             }
             set
             {
-                this.transitionsField = value;
+                transitionsField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Localize", IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItem("Localize", IsNullable = false)]
         public ProcessLocalize[] Localization
         {
             get
             {
-                return this.localizationField;
+                return localizationField;
             }
             set
             {
-                this.localizationField = value;
+                localizationField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool CanBeInlined
         {
             get
             {
-                return this.canBeInlinedField;
+                return canBeInlinedField;
             }
             set
             {
-                this.canBeInlinedField = value;
+                canBeInlinedField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Tags
         {
             get
             {
-                return this.tagsField;
+                return tagsField;
             }
             set
             {
-                this.tagsField = value;
+                tagsField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool LogEnabled
         {
             get
             {
-                return this.logEnabledField;
+                return logEnabledField;
             }
             set
             {
-                this.logEnabledField = value;
+                logEnabledField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessDesigner
     {
 
@@ -228,38 +227,38 @@ namespace WF.Sample.Business.Model
         private sbyte yField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public sbyte X
         {
             get
             {
-                return this.xField;
+                return xField;
             }
             set
             {
-                this.xField = value;
+                xField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public sbyte Y
         {
             get
             {
-                return this.yField;
+                return yField;
             }
             set
             {
-                this.yField = value;
+                yField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessActor
     {
 
@@ -270,52 +269,52 @@ namespace WF.Sample.Business.Model
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Rule
         {
             get
             {
-                return this.ruleField;
+                return ruleField;
             }
             set
             {
-                this.ruleField = value;
+                ruleField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Value
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessParameters
     {
 
@@ -326,19 +325,19 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.parameterField;
+                return parameterField;
             }
             set
             {
-                this.parameterField = value;
+                parameterField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessParametersParameter
     {
 
@@ -349,52 +348,52 @@ namespace WF.Sample.Business.Model
         private string purposeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Type
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Purpose
         {
             get
             {
-                return this.purposeField;
+                return purposeField;
             }
             set
             {
-                this.purposeField = value;
+                purposeField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessCommand
     {
 
@@ -407,33 +406,33 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.inputParametersField;
+                return inputParametersField;
             }
             set
             {
-                this.inputParametersField = value;
+                inputParametersField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessCommandInputParameters
     {
 
@@ -444,19 +443,19 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.parameterRefField;
+                return parameterRefField;
             }
             set
             {
-                this.parameterRefField = value;
+                parameterRefField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessCommandInputParametersParameterRef
     {
 
@@ -469,66 +468,66 @@ namespace WF.Sample.Business.Model
         private string nameRefField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool IsRequired
         {
             get
             {
-                return this.isRequiredField;
+                return isRequiredField;
             }
             set
             {
-                this.isRequiredField = value;
+                isRequiredField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string DefaultValue
         {
             get
             {
-                return this.defaultValueField;
+                return defaultValueField;
             }
             set
             {
-                this.defaultValueField = value;
+                defaultValueField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string NameRef
         {
             get
             {
-                return this.nameRefField;
+                return nameRefField;
             }
             set
             {
-                this.nameRefField = value;
+                nameRefField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTimers
     {
 
@@ -539,19 +538,19 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.timerField;
+                return timerField;
             }
             set
             {
-                this.timerField = value;
+                timerField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTimersTimer
     {
 
@@ -564,66 +563,66 @@ namespace WF.Sample.Business.Model
         private bool notOverrideIfExistsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Type
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Value
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool NotOverrideIfExists
         {
             get
             {
-                return this.notOverrideIfExistsField;
+                return notOverrideIfExistsField;
             }
             set
             {
-                this.notOverrideIfExistsField = value;
+                notOverrideIfExistsField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessComment
     {
 
@@ -654,159 +653,159 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.designerField;
+                return designerField;
             }
             set
             {
-                this.designerField = value;
+                designerField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Alignment
         {
             get
             {
-                return this.alignmentField;
+                return alignmentField;
             }
             set
             {
-                this.alignmentField = value;
+                alignmentField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public byte Rotation
         {
             get
             {
-                return this.rotationField;
+                return rotationField;
             }
             set
             {
-                this.rotationField = value;
+                rotationField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public ushort Width
         {
             get
             {
-                return this.widthField;
+                return widthField;
             }
             set
             {
-                this.widthField = value;
+                widthField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool BoldText
         {
             get
             {
-                return this.boldTextField;
+                return boldTextField;
             }
             set
             {
-                this.boldTextField = value;
+                boldTextField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool ItalicText
         {
             get
             {
-                return this.italicTextField;
+                return italicTextField;
             }
             set
             {
-                this.italicTextField = value;
+                italicTextField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool UnderlineText
         {
             get
             {
-                return this.underlineTextField;
+                return underlineTextField;
             }
             set
             {
-                this.underlineTextField = value;
+                underlineTextField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool LineThroughText
         {
             get
             {
-                return this.lineThroughTextField;
+                return lineThroughTextField;
             }
             set
             {
-                this.lineThroughTextField = value;
+                lineThroughTextField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public byte FontSize
         {
             get
             {
-                return this.fontSizeField;
+                return fontSizeField;
             }
             set
             {
-                this.fontSizeField = value;
+                fontSizeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Value
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessCommentDesigner
     {
 
@@ -819,66 +818,66 @@ namespace WF.Sample.Business.Model
         private bool hiddenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public ushort X
         {
             get
             {
-                return this.xField;
+                return xField;
             }
             set
             {
-                this.xField = value;
+                xField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public ushort Y
         {
             get
             {
-                return this.yField;
+                return yField;
             }
             set
             {
-                this.yField = value;
+                yField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Color
         {
             get
             {
-                return this.colorField;
+                return colorField;
             }
             set
             {
-                this.colorField = value;
+                colorField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool Hidden
         {
             get
             {
-                return this.hiddenField;
+                return hiddenField;
             }
             set
             {
-                this.hiddenField = value;
+                hiddenField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessActivity
     {
 
@@ -901,103 +900,103 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.designerField;
+                return designerField;
             }
             set
             {
-                this.designerField = value;
+                designerField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string State
         {
             get
             {
-                return this.stateField;
+                return stateField;
             }
             set
             {
-                this.stateField = value;
+                stateField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool IsInitial
         {
             get
             {
-                return this.isInitialField;
+                return isInitialField;
             }
             set
             {
-                this.isInitialField = value;
+                isInitialField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool IsFinal
         {
             get
             {
-                return this.isFinalField;
+                return isFinalField;
             }
             set
             {
-                this.isFinalField = value;
+                isFinalField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool IsForSetState
         {
             get
             {
-                return this.isForSetStateField;
+                return isForSetStateField;
             }
             set
             {
-                this.isForSetStateField = value;
+                isForSetStateField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool IsAutoSchemeUpdate
         {
             get
             {
-                return this.isAutoSchemeUpdateField;
+                return isAutoSchemeUpdateField;
             }
             set
             {
-                this.isAutoSchemeUpdateField = value;
+                isAutoSchemeUpdateField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessActivityDesigner
     {
 
@@ -1010,66 +1009,66 @@ namespace WF.Sample.Business.Model
         private bool hiddenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public ushort X
         {
             get
             {
-                return this.xField;
+                return xField;
             }
             set
             {
-                this.xField = value;
+                xField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public ushort Y
         {
             get
             {
-                return this.yField;
+                return yField;
             }
             set
             {
-                this.yField = value;
+                yField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Color
         {
             get
             {
-                return this.colorField;
+                return colorField;
             }
             set
             {
-                this.colorField = value;
+                colorField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool Hidden
         {
             get
             {
-                return this.hiddenField;
+                return hiddenField;
             }
             set
             {
-                this.hiddenField = value;
+                hiddenField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTransition
     {
 
@@ -1102,11 +1101,11 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.restrictionsField;
+                return restrictionsField;
             }
             set
             {
-                this.restrictionsField = value;
+                restrictionsField = value;
             }
         }
 
@@ -1115,11 +1114,11 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.triggersField;
+                return triggersField;
             }
             set
             {
-                this.triggersField = value;
+                triggersField = value;
             }
         }
 
@@ -1128,11 +1127,11 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.conditionsField;
+                return conditionsField;
             }
             set
             {
-                this.conditionsField = value;
+                conditionsField = value;
             }
         }
 
@@ -1141,131 +1140,131 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.designerField;
+                return designerField;
             }
             set
             {
-                this.designerField = value;
+                designerField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Name
         {
             get
             {
-                return this.nameField;
+                return nameField;
             }
             set
             {
-                this.nameField = value;
+                nameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string To
         {
             get
             {
-                return this.toField;
+                return toField;
             }
             set
             {
-                this.toField = value;
+                toField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string From
         {
             get
             {
-                return this.fromField;
+                return fromField;
             }
             set
             {
-                this.fromField = value;
+                fromField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Classifier
         {
             get
             {
-                return this.classifierField;
+                return classifierField;
             }
             set
             {
-                this.classifierField = value;
+                classifierField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string AllowConcatenationType
         {
             get
             {
-                return this.allowConcatenationTypeField;
+                return allowConcatenationTypeField;
             }
             set
             {
-                this.allowConcatenationTypeField = value;
+                allowConcatenationTypeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string RestrictConcatenationType
         {
             get
             {
-                return this.restrictConcatenationTypeField;
+                return restrictConcatenationTypeField;
             }
             set
             {
-                this.restrictConcatenationTypeField = value;
+                restrictConcatenationTypeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string ConditionsConcatenationType
         {
             get
             {
-                return this.conditionsConcatenationTypeField;
+                return conditionsConcatenationTypeField;
             }
             set
             {
-                this.conditionsConcatenationTypeField = value;
+                conditionsConcatenationTypeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool DisableParentStateControl
         {
             get
             {
-                return this.disableParentStateControlField;
+                return disableParentStateControlField;
             }
             set
             {
-                this.disableParentStateControlField = value;
+                disableParentStateControlField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTransitionRestrictions
     {
 
@@ -1276,19 +1275,19 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.restrictionField;
+                return restrictionField;
             }
             set
             {
-                this.restrictionField = value;
+                restrictionField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTransitionRestrictionsRestriction
     {
 
@@ -1297,38 +1296,38 @@ namespace WF.Sample.Business.Model
         private string nameRefField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Type
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string NameRef
         {
             get
             {
-                return this.nameRefField;
+                return nameRefField;
             }
             set
             {
-                this.nameRefField = value;
+                nameRefField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTransitionTriggers
     {
 
@@ -1339,19 +1338,19 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.triggerField;
+                return triggerField;
             }
             set
             {
-                this.triggerField = value;
+                triggerField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTransitionTriggersTrigger
     {
 
@@ -1360,38 +1359,38 @@ namespace WF.Sample.Business.Model
         private string nameRefField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Type
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string NameRef
         {
             get
             {
-                return this.nameRefField;
+                return nameRefField;
             }
             set
             {
-                this.nameRefField = value;
+                nameRefField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTransitionConditions
     {
 
@@ -1402,19 +1401,19 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.conditionField;
+                return conditionField;
             }
             set
             {
-                this.conditionField = value;
+                conditionField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTransitionConditionsCondition
     {
 
@@ -1431,61 +1430,61 @@ namespace WF.Sample.Business.Model
         {
             get
             {
-                return this.expressionField;
+                return expressionField;
             }
             set
             {
-                this.expressionField = value;
+                expressionField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Type
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool ConditionInversion
         {
             get
             {
-                return this.conditionInversionField;
+                return conditionInversionField;
             }
             set
             {
-                this.conditionInversionField = value;
+                conditionInversionField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         public bool ConditionInversionSpecified
         {
             get
             {
-                return this.conditionInversionFieldSpecified;
+                return conditionInversionFieldSpecified;
             }
             set
             {
-                this.conditionInversionFieldSpecified = value;
+                conditionInversionFieldSpecified = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessTransitionDesigner
     {
 
@@ -1500,80 +1499,80 @@ namespace WF.Sample.Business.Model
         private bool hiddenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public ushort X
         {
             get
             {
-                return this.xField;
+                return xField;
             }
             set
             {
-                this.xField = value;
+                xField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         public bool XSpecified
         {
             get
             {
-                return this.xFieldSpecified;
+                return xFieldSpecified;
             }
             set
             {
-                this.xFieldSpecified = value;
+                xFieldSpecified = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public ushort Y
         {
             get
             {
-                return this.yField;
+                return yField;
             }
             set
             {
-                this.yField = value;
+                yField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [System.Xml.Serialization.XmlIgnore()]
         public bool YSpecified
         {
             get
             {
-                return this.yFieldSpecified;
+                return yFieldSpecified;
             }
             set
             {
-                this.yFieldSpecified = value;
+                yFieldSpecified = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public bool Hidden
         {
             get
             {
-                return this.hiddenField;
+                return hiddenField;
             }
             set
             {
-                this.hiddenField = value;
+                hiddenField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public partial class ProcessLocalize
     {
 
@@ -1588,72 +1587,72 @@ namespace WF.Sample.Business.Model
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Type
         {
             get
             {
-                return this.typeField;
+                return typeField;
             }
             set
             {
-                this.typeField = value;
+                typeField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string IsDefault
         {
             get
             {
-                return this.isDefaultField;
+                return isDefaultField;
             }
             set
             {
-                this.isDefaultField = value;
+                isDefaultField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Culture
         {
             get
             {
-                return this.cultureField;
+                return cultureField;
             }
             set
             {
-                this.cultureField = value;
+                cultureField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string ObjectName
         {
             get
             {
-                return this.objectNameField;
+                return objectNameField;
             }
             set
             {
-                this.objectNameField = value;
+                objectNameField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.Xml.Serialization.XmlAttribute()]
         public string Value
         {
             get
             {
-                return this.valueField;
+                return valueField;
             }
             set
             {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }

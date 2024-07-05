@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using VLWorkflowRuntime.WorkflowInterface;
+using VLWorkflowRuntime.WorkflowModels;
 using WF.Sample.Business.DataAccess;
 using WF.Sample.Business.Model;
 using WF.Sample.Business.Workflow;
@@ -13,10 +16,12 @@ namespace WF.Sample.MsSql.Implementation
     public class TravelRequestRepository : ITravelRequestRepository
     {
         private readonly SampleContext _sampleContext;
+        private readonly IWorkflowRepository _workflowRepository;
 
-        public TravelRequestRepository(SampleContext sampleContext)
+        public TravelRequestRepository(SampleContext sampleContext, IWorkflowRepository workflowRepository)
         {
             _sampleContext = sampleContext;
+            _workflowRepository = workflowRepository;
         }
 
         public void ChangeState(Guid id, string nextState,  string nextStateName)
@@ -192,6 +197,11 @@ namespace WF.Sample.MsSql.Implementation
             }
 
             return sb.ToString();
+        }
+
+        public Task ExecuteCommandAsync<T>(string commandName, Guid id, string currentUser, string workflowSchemeCode)
+        {
+           return _workflowRepository.ExecuteCommandAsync<TravelRequest>(_sampleContext, commandName, id, currentUser, workflowSchemeCode);
         }
     }
 }

@@ -45,12 +45,15 @@
       ]
     },
     {
-      "type": "WF.Sample.MsSql.Implementation.WorkflowRepository",
+      "type": "VLWorkflowRuntime.WorkflowImplementation.WorkflowRepository, VLWorkflowRuntime",
       "services": [
         {
-          "type": "WF.Sample.Business.DataAccess.IWorkflowRepository, WF.Sample.Business"
+          "type": "VLWorkflowRuntime.WorkflowInterface.IWorkflowRepository, VLWorkflowRuntime"
         }
       ]
+    },
+    {
+      "type": "VLWorkflowRuntime.Workflow.WorkflowDbContext, VLWorkflowRuntime"
     }
   ]
 }

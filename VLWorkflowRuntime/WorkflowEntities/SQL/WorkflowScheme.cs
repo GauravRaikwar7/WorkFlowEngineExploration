@@ -1,9 +1,8 @@
-namespace WF.Sample.MsSql
+namespace VLWorkflowRuntime.WorkflowEntities.SQL
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
- 
+
 
     [Table("WorkflowProcessScheme")]
     public partial class WorkflowProcessScheme
