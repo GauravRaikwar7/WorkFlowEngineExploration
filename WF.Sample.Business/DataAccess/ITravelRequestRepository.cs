@@ -18,5 +18,6 @@ namespace WF.Sample.Business.DataAccess
         void ChangeState(Guid id, string nextState, string nextStateName);
         bool IsAuthorsBoss(Guid TravelRequestId, Guid identityId);
         IEnumerable<string> GetAuthorsBoss(Guid TravelRequestId);
+        Task ExecuteCommandAsync<T>(string commandName, Guid id, string currentUser, string workflowSchemeCode);
     }
 }

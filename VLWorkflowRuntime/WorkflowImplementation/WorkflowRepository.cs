@@ -1,22 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using WF.Sample.Business.DataAccess;
-using WF.Sample.Business.Model;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using VLWorkflowRuntime.Workflow;
+using VLWorkflowRuntime.WorkflowInterface;
+using VLWorkflowRuntime.WorkflowModels;
 
 
-namespace WF.Sample.MsSql.Implementation
+namespace VLWorkflowRuntime.WorkflowImplementation
 {
     public class WorkflowRepository : IWorkflowRepository
     {
-        private readonly SampleContext _sampleContext;
+        private readonly Workflow.WorkflowDbContext _sampleContext;
 
-        public WorkflowRepository(SampleContext sampleContext)
+        public WorkflowRepository(WorkflowDbContext workflowDbContext)
         {
-            _sampleContext = sampleContext;
+            _sampleContext = workflowDbContext;
         }
 
         public ProcessActivity GetInitialActivityBySchemaCode(string workFlowCode)
@@ -24,21 +20,21 @@ namespace WF.Sample.MsSql.Implementation
             var process = GetProcessBySchemeCode(workFlowCode);
             if (process != null)
             {
-                return process.Activities.FirstOrDefault(x=> x.IsInitial);
+                return process.Activities.FirstOrDefault(x => x.IsInitial);
             }
             return null;
         }
 
         public List<string> GetAllWorkFlows()
         {
-            return _sampleContext.WorkflowSchemes.Select(x=> x.Code).ToList();
+            return _sampleContext.WorkflowSchemes.Select(x => x.Code).ToList();
         }
 
         public Process GetProcessBySchemeCode(string workFlowCode)
         {
             Process process = null;
             var scheme = _sampleContext.WorkflowSchemes.FirstOrDefault(x => x.Code == workFlowCode);
-            if (scheme != null &&  !string.IsNullOrEmpty(scheme.Scheme))
+            if (scheme != null && !string.IsNullOrEmpty(scheme.Scheme))
             {
                 process = XmlDeserializer.Deserialize<Process>(scheme.Scheme);
             }
@@ -57,14 +53,12 @@ namespace WF.Sample.MsSql.Implementation
             return activities;
         }
 
-        public async Task ExecuteCommandAsync<T>(string command,Guid id, string currentUser, string workflowcode)
+        public async Task ExecuteCommandAsync<T>(WorkflowDbContext _sampleContext, string command, Guid id, string currentUser, string workflowcode)
         {
             var scheme = GetProcessBySchemeCode(workflowcode);
-            var wfpi = await _sampleContext.WorkflowProcessInstance.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var wfpi = await _sampleContext.WorkflowProcessInstance.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
 
             var currentState = wfpi.StateName;
-            var currentStateActivity = wfpi.ActivityName;
-
             ProcessTransition transition = GetTransition(command, currentState, scheme);
             string newState = transition.To;
             string newStateName = GetStateName(scheme, newState);
@@ -77,28 +71,40 @@ namespace WF.Sample.MsSql.Implementation
             var entityTypes = _sampleContext.Model.GetEntityTypes();
             var entityType = entityTypes.FirstOrDefault(et => et.ClrType == typeof(T));
             var tableName = entityType.GetTableName();
-            //var schema = entityType.GetSchema();
-           
+
             var query = $"update dbo.{tableName} set state = '{newState}', statename = '{newStateName}' where id = '{id}' ";
             var res = await _sampleContext.Database.ExecuteSqlRawAsync(query);
-            await _sampleContext.SaveChangesAsync();
+            if (res != 1)
+            {
+                //throw new Exception("Some issue with saving new state in entity table");
+            }
+            else
+            {
+                await _sampleContext.SaveChangesAsync();
+                await ExecuteAutoTransition(wfpi, newState, scheme, tableName);
+            }
 
-            await ExecuteAutoTransition(wfpi, newState,scheme,tableName);
             return;
         }
 
-        private async Task ExecuteAutoTransition(WorkflowProcessInstance wfpi,string currentState, Process scheme, string tableName)
+        private async Task ExecuteAutoTransition(WorkflowEntities.SQL.WorkflowProcessInstance wfpi, string currentState, Process scheme, string tableName)
         {
             ProcessTransition processTransition = GetAutoTransition(currentState, scheme);
-            string newState = processTransition.To;
-            string newStateName = GetStateName(scheme, newState);
-            var query = $"update dbo.{tableName} set state = '{newState}', statename = '{newStateName}' where id = '{wfpi.Id}' ";
-            var res = await _sampleContext.Database.ExecuteSqlRawAsync(query);
-            wfpi.PreviousState = wfpi.StateName;
-            wfpi.PreviousActivity = wfpi.ActivityName;
-            wfpi.StateName = newStateName;
-            wfpi.ActivityName = newState;
-            await _sampleContext.SaveChangesAsync();
+            if (processTransition != null)
+            {
+                string newState = processTransition.To;
+                string newStateName = GetStateName(scheme, newState);
+                var query = $"update dbo.{tableName} set state = '{newState}', statename = '{newStateName}' where id = '{wfpi.Id}' ";
+                var res = await _sampleContext.Database.ExecuteSqlRawAsync(query);
+                if (res == 1)
+                {
+                    wfpi.PreviousState = wfpi.StateName;
+                    wfpi.PreviousActivity = wfpi.ActivityName;
+                    wfpi.StateName = newStateName;
+                    wfpi.ActivityName = newState;
+                    await _sampleContext.SaveChangesAsync();
+                }
+            }
         }
 
         private ProcessTransition GetAutoTransition(string currentState, Process scheme)

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using WF.Sample.Business.Model;
+using VLWorkflowRuntime.Workflow;
+using VLWorkflowRuntime.WorkflowModels;
 
-namespace WF.Sample.Business.DataAccess
+namespace VLWorkflowRuntime.WorkflowInterface
 {
     public interface IWorkflowRepository
     {
@@ -13,6 +14,6 @@ namespace WF.Sample.Business.DataAccess
         List<string> GetAllWorkFlows();
         ProcessCommand[] GetAvailableCommands(string workflowSchemeCode, Guid id, string v);
         ProcessActivity[] GetAvailableActivities(string workflowCode, Guid id, string user);
-        Task ExecuteCommandAsync<T>(string command, Guid id, string currentUser, string workflowcode);
+        Task ExecuteCommandAsync<T>(WorkflowDbContext workflowDbContext,string command, Guid id, string currentUser, string workflowcode);
     }
 }

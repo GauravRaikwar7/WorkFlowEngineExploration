@@ -14,6 +14,7 @@
     <PackageReference Include="WorkflowEngine.NETCore-ProviderForMSSQL" Version="12.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VLWorkflowRuntime\VLWorkflowRuntime.csproj" />
     <ProjectReference Include="..\WF.Sample.Business\WF.Sample.Business.csproj" />
   </ItemGroup>
 </Project>

@@ -14,6 +14,8 @@ using WF.Sample.Business.DataAccess;
 using OptimaJet.Workflow.Core.Persistence;
 using OptimaJet.Workflow.Core.Runtime;
 using WF.Sample.Extensions;
+using VLWorkflowRuntime.WorkflowInterface;
+using VLWorkflowRuntime.WorkflowModels;
 
 namespace WF.Sample.Controllers
 {
@@ -351,7 +353,9 @@ namespace WF.Sample.Controllers
             //await WorkflowInit.Runtime.ExecuteCommandAsync(command,currentUser,currentUser);
             //var tr = _TravelRequestRepository.Get(id);
 
-            await _workFlowRepository.ExecuteCommandAsync<MsSql.TravelRequest>(command.CommandName, tr.Id, currentUser, tr.WorkflowSchemeCode);
+
+
+            await _TravelRequestRepository.ExecuteCommandAsync<MsSql.TravelRequest>(command.CommandName, tr.Id, currentUser, tr.WorkflowSchemeCode);
         }
 
         private async Task CreateWorkflowIfNotExists(Guid id, string workflowSchemeCode = "TravelRequestScheme")

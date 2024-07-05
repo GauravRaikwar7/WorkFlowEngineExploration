@@ -2,13 +2,13 @@ namespace WF.Sample.MsSql
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
-    using WF.Sample.MsSql.Entities;
+    using VLWorkflowRuntime.Workflow;
 
-    public partial class SampleContext : DbContext
+    public partial class SampleContext : WorkflowDbContext 
     {
         private readonly IConfiguration _config;
 
-        public SampleContext(IConfiguration config)
+        public SampleContext(IConfiguration config) : base(config)
         {
             _config = config;
         }
@@ -20,10 +20,10 @@ namespace WF.Sample.MsSql
         public virtual DbSet<StructDivision> StructDivisions { get; set; }
         public virtual DbSet<Head> VHeads { get; set; }
         public virtual DbSet<EmployeeRole> EmployeeRoles { get; set; }
-        public virtual DbSet<WorkflowScheme> WorkflowSchemes { get; set; }
-        public virtual DbSet<WorkflowProcessScheme> WorkflowProcessSchemes { get; set; }
-        public virtual DbSet<WorkflowProcessInstance> WorkflowProcessInstance { get; set; }
-        public virtual DbSet<WorkflowProcessTransitionHistory> WorkflowProcessInstanceHistory { get; set; }
+        //public virtual DbSet<WorkflowScheme> WorkflowSchemes { get; set; }
+        //public virtual DbSet<WorkflowProcessScheme> WorkflowProcessSchemes { get; set; }
+        //public virtual DbSet<WorkflowProcessInstance> WorkflowProcessInstance { get; set; }
+        //public virtual DbSet<WorkflowProcessTransitionHistory> WorkflowProcessInstanceHistory { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
