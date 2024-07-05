@@ -635,7 +635,7 @@ namespace WF.Sample.Business.Model
 
         private byte rotationField;
 
-        private ushort widthField;
+        private float widthField;
 
         private bool boldTextField;
 
@@ -706,7 +706,7 @@ namespace WF.Sample.Business.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort Width
+        public float Width
         {
             get
             {
@@ -810,9 +810,9 @@ namespace WF.Sample.Business.Model
     public partial class ProcessCommentDesigner
     {
 
-        private ushort xField;
+        private float xField;
 
-        private ushort yField;
+        private float yField;
 
         private string colorField;
 
@@ -820,7 +820,7 @@ namespace WF.Sample.Business.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort X
+        public float X
         {
             get
             {
@@ -834,7 +834,7 @@ namespace WF.Sample.Business.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort Y
+        public float Y
         {
             get
             {
@@ -1001,9 +1001,9 @@ namespace WF.Sample.Business.Model
     public partial class ProcessActivityDesigner
     {
 
-        private ushort xField;
+        private float xField;
 
-        private ushort yField;
+        private float yField;
 
         private string colorField;
 
@@ -1011,7 +1011,7 @@ namespace WF.Sample.Business.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort X
+        public float X
         {
             get
             {
@@ -1025,7 +1025,7 @@ namespace WF.Sample.Business.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort Y
+        public float Y
         {
             get
             {
@@ -1489,11 +1489,11 @@ namespace WF.Sample.Business.Model
     public partial class ProcessTransitionDesigner
     {
 
-        private ushort xField;
+        private float xField;
 
         private bool xFieldSpecified;
 
-        private ushort yField;
+        private float yField;
 
         private bool yFieldSpecified;
 
@@ -1501,7 +1501,7 @@ namespace WF.Sample.Business.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort X
+        public float X
         {
             get
             {
@@ -1529,7 +1529,7 @@ namespace WF.Sample.Business.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort Y
+        public float Y
         {
             get
             {

@@ -136,7 +136,7 @@ namespace WF.Sample.Controllers
                 Guid userId = CurrentUserSettings.GetCurrentUser(HttpContext);
                 var trnumber = GenerateTRNumber("TS");
 
-                ProcessActivity initialActivity = _workFlowRepository.GetInitialActivityBySchemaCode("TravelRequestScheme");
+                ProcessActivity initialActivity = _workFlowRepository.GetInitialActivityBySchemaCode("CHC");
                 model = new TravelRequestIndexModel<TravelRequestModel>() { TravelRequestListModel = new TravelRequestListModel<TravelRequestModel>
                 {
                     Docs = new List<TravelRequestModel> {
